@@ -1,0 +1,187 @@
+.timepicker-backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 100000;
+  background: rgba(0, 0, 0, 0.49);
+}
+
+.timepicker-modal {
+  width: 50%;
+
+  max-width: 400px;
+  background: #fff;
+  position: fixed;
+  top: 50%;
+  z-index: 100001;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px;
+  border-radius: 4px;
+
+  .timepicker-header {
+    background-color: #0097A7;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+
+  .am-pm-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .am-pm-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-left: 12px;
+  }
+
+  .timepicker-time-container {
+    font-size: 42px;
+    color: inherit;
+    letter-spacing: 2px;
+  }
+
+  .am-pm-input:checked + .am-pm-label {
+    color: inherit;
+    display: block;
+
+  }
+
+  .timepicker-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .hours-container {
+    width: 260px;
+    height: 260px;
+    position: relative;
+    /* margin: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e2e2e2;
+    border-radius: 50%;
+
+  }
+
+  .hand {
+    width: 45%;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    background: #0097A7;
+    transform-origin: center left 0px;
+    pointer-events: none;
+    transform: rotateZ(0deg);
+    height: 2px;
+    &:after {
+      position: absolute;
+      content: "";
+      top: -5px;
+      border-radius: 50%;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      background: #0097a7;
+    }
+  }
+
+  .circle {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    border-radius: 50%;
+    &.selected {
+      background: #0097A7;
+      color: #fff;
+    }
+  }
+
+  .circle:nth-of-type(1) {
+    transform: translate3d(0px, -110px, 0);
+  }
+
+  .circle:nth-of-type(2) {
+    transform: translate3d(55px, -95px, 0);
+  }
+
+  .circle:nth-of-type(3) {
+    transform: translate3d(95px, -55px, 0);
+  }
+
+  .circle:nth-of-type(4) {
+    transform: translate3d(110px, 0px, 0);
+  }
+
+  .circle:nth-of-type(5) {
+    transform: translate3d(95px, 55px, 0);
+  }
+
+  .circle:nth-of-type(6) {
+    transform: translate3d(55px, 95px, 0);
+  }
+
+  .circle:nth-of-type(7) {
+    transform: translate3d(0px, 110px, 0);
+  }
+
+  .circle:nth-of-type(8) {
+    transform: translate3d(-55px, 95px, 0);
+  }
+
+  .circle:nth-of-type(9) {
+    transform: translate3d(-95px, 55px, 0);
+  }
+
+  .circle:nth-of-type(10) {
+    transform: translate3d(-110px, 0px, 0);
+  }
+
+  .circle:nth-of-type(11) {
+    transform: translate3d(-95px, -55px, 0);
+  }
+
+  .circle:nth-of-type(12) {
+    transform: translate3d(-55px, -95px, 0);
+  }
+
+  .mask {
+    width: 100%;
+    height: 100%;
+  }
+  footer {
+    text-align: right;
+    padding: 20px;
+  }
+  .timepicker-button {
+    border: 0;
+    background: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-left: 12px;
+    font-weight: bold;
+    color: #0097A7;
+  }
+}
