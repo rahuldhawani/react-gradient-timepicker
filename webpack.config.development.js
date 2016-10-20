@@ -3,7 +3,6 @@ module.exports = {
   debug: true,
   entry: [
     './src/example/',
-    'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8787'
   ],
   output: {

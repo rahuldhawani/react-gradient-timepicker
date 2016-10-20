@@ -2,16 +2,19 @@
   "name": "react-timepicker",
   "version": "0.0.1",
   "author": "Rahul Dhawani",
+  "main": "build/index.js",
   "description": "React Timepicker",
   "scripts": {
     "dev": "webpack-dev-server --config=./webpack.config.development.js",
-    "test": "mocha --require ./src/test/utils.js --compilers js:babel-core/register --reporter spec ./src/test"
+    "test": "mocha --require ./src/test/utils.js --compilers js:babel-core/register --reporter spec ./src/test",
+    "build": "rm -rf ./build && babel src/timepicker -d build/"
   },
   "keywords": [
     "react",
     "time",
     "timepicker",
-    "time-picker"
+    "time-picker",
+    "gradient"
   ],
   "license": "MIT",
   "dependencies": {

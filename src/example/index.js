@@ -1,7 +1,7 @@
 /* eslint no-alert:0 */
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import TimePicker from '../timepicker';
+import TimePicker from '../../build';
 class Example extends Component {
   static propTypes = {};
 
