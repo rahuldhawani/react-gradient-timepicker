@@ -4,7 +4,8 @@
   "author": "Rahul Dhawani",
   "description": "React Timepicker",
   "scripts": {
-    "dev" : "webpack-dev-server --config=./webpack.config.development.js"
+    "dev": "webpack-dev-server --config=./webpack.config.development.js",
+    "test": "mocha --require ./src/test/utils.js --compilers js:babel-core/register --reporter spec ./src/test"
   },
   "keywords": [
     "react",
@@ -14,19 +15,26 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.16.4",
+    "lodash.find": "^4.6.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
   "devDependencies": {
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2",
     "babel-core": "^6.2.1",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "chai": "^3.5.0",
+    "enzyme": "^2.5.1",
     "eslint": "^3.6.1",
-    "eslint-plugin-react": "^6.2.0"
+    "eslint-plugin-react": "^6.2.0",
+    "jsdom": "^9.8.0",
+    "mocha": "^3.1.2",
+    "mocha-jsdom": "^1.1.0",
+    "react-addons-test-utils": "^15.3.2",
+    "sinon": "^1.17.6",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
   }
 }
