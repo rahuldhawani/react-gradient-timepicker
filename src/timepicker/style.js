@@ -24,19 +24,19 @@ export function getColorStyles({themeSelector, theme, color1, headerColor = colo
 
   return  `
     .react-timepicker-background-color-${themeSelector} {
- ${backgroundColor};
-  }
-
-  .react-timepicker-primary-color-background-${themeSelector} {
-  background: ${primaryColor} !important;
-  }
-  .react-timepicker-primary-color-color-${themeSelector} {
-  color: ${primaryColor} !important;
-  }`;
+      ${backgroundColor};
+     }
+    .react-timepicker-primary-color-background-${themeSelector} {
+      background: ${primaryColor} !important;
+    }
+    .react-timepicker-primary-color-color-${themeSelector} {
+      color: ${primaryColor} !important;
+    }
+    `;
 }
-
+const transformLeftRightMiddle = 'translateX(-50%) translateY(-50%);';
 export const style = `
-  .timepicker-backdrop {
+.timepicker-backdrop {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -206,6 +206,8 @@ export const style = `
   height: 25px;
   position: absolute;
   border-radius: 50%;
+  top: 50%;
+  left: 50%;
 }
 
 .timepicker-modal .circle.selected {
@@ -213,63 +215,63 @@ export const style = `
 }
 
 .timepicker-modal .circle:nth-of-type(1) {
-  -webkit-transform: translate3d(0px, -110px, 0);
-  transform: translate3d(0px, -110px, 0);
+  -webkit-transform: translate3d(0px, -110px, 0) ${transformLeftRightMiddle};
+  transform: translate3d(0px, -110px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(2) {
-  transform: translate3d(55px, -95px, 0);
-  -webkit-transform: translate3d(55px, -95px, 0);
+  transform: translate3d(55px, -95px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(55px, -95px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(3) {
-  -webkit-transform: translate3d(95px, -55px, 0);
-  transform: translate3d(95px, -55px, 0);
+  -webkit-transform: translate3d(95px, -55px, 0) ${transformLeftRightMiddle};
+  transform: translate3d(95px, -55px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(4) {
-  transform: translate3d(110px, 0px, 0);
-  -webkit-transform: translate3d(110px, 0px, 0);
+  transform: translate3d(110px, 0px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(110px, 0px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(5) {
-  transform: translate3d(95px, 55px, 0);
-  -webkit-transform: translate3d(95px, 55px, 0);
+  transform: translate3d(95px, 55px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(95px, 55px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(6) {
-  transform: translate3d(55px, 95px, 0);
-  -webkit-transform: translate3d(55px, 95px, 0);
+  transform: translate3d(55px, 95px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(55px, 95px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(7) {
-  transform: translate3d(0px, 110px, 0);
-  -webkit-transform: translate3d(0px, 110px, 0);
+  transform: translate3d(0px, 110px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(0px, 110px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(8) {
-  transform: translate3d(-55px, 95px, 0);
-  -webkit-transform: translate3d(-55px, 95px, 0);
+  transform: translate3d(-55px, 95px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(-55px, 95px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(9) {
-  transform: translate3d(-95px, 55px, 0);
-  -webkit-transform: translate3d(-95px, 55px, 0);
+  transform: translate3d(-95px, 55px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(-95px, 55px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(10) {
-  transform: translate3d(-110px, 0px, 0);
-  -webkit-transform: translate3d(-110px, 0px, 0);
+  transform: translate3d(-110px, 0px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(-110px, 0px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(11) {
-  transform: translate3d(-95px, -55px, 0);
-  -webkit-transform: translate3d(-95px, -55px, 0);
+  transform: translate3d(-95px, -55px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(-95px, -55px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .circle:nth-of-type(12) {
-  transform: translate3d(-55px, -95px, 0);
-  -webkit-transform: translate3d(-55px, -95px, 0);
+  transform: translate3d(-55px, -95px, 0) ${transformLeftRightMiddle};
+  -webkit-transform: translate3d(-55px, -95px, 0) ${transformLeftRightMiddle};
 }
 
 .timepicker-modal .mask {

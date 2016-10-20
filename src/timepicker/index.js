@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import {getColorStyles, style as commonStyles} from './style';
+import { appendZero, getFormat12, format12to24, format24to12, isMousePressed } from './utils';
 
 export default class TimePicker extends Component {
   static propTypes = {
@@ -22,7 +23,7 @@ export default class TimePicker extends Component {
     let format12 = '';
     if (this.props.time) {
       let time = this.props.time.split(':');
-      format12 = this.format24to12(Number(time[0]), Number(time[1]));
+      format12 = format24to12(Number(time[0]), Number(time[1]));
     }
     this.state = {
       toShow : false,
@@ -34,6 +35,29 @@ export default class TimePicker extends Component {
   }
 
   componentWillMount() {
+    this.addStyles();
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    let format12 = '';
+    let format24 = '';
+
+    if (nextProps.time) {
+      let temp = nextProps.time.split(':');
+      format12 = format24to12(Number(temp[0]), Number(temp[1]));
+      format24 = nextProps.time;
+    }
+
+    this.setState({
+      time : {
+        format12,
+        format24
+      }
+    });
+  }
+
+  addStyles() {
     const commonSelector = 'react-timepicker-common-style';
     const themeSelector = this.props.keyName;
     const {theme, color1, headerColor} = this.props;
@@ -74,25 +98,6 @@ export default class TimePicker extends Component {
     }
   }
 
-
-  componentWillReceiveProps(nextProps) {
-    let format12 = '';
-    let format24 = '';
-
-    if (nextProps.time) {
-      let temp = nextProps.time.split(':');
-      format12 = this.format24to12(Number(temp[0]), Number(temp[1]));
-      format24 = nextProps.time;
-    }
-
-    this.setState({
-      time : {
-        format12,
-        format24
-      }
-    });
-  }
-
   // utils
   removeEventListener() {
     window.removeEventListener('keydown', this.handleKeyPress);
@@ -101,56 +106,7 @@ export default class TimePicker extends Component {
   addEventListener() {
     window.addEventListener('keydown', this.handleKeyPress);
   }
-
-  appendZero(val) {
-    return val < 10 ? '0' + val : val;
-  }
-
-  isMousePressed(event) {
-    if (typeof event.buttons === 'undefined') {
-      return event.nativeEvent.which !== 1;
-    }
-
-    return event.buttons !== 1;
-  }
-
-  format12to24 = (hour, minute, isAmSelected) => {
-    if (isAmSelected && hour === 12) {
-      hour -= 12;
-      return this.appendZero(hour) + ':' + this.appendZero(minute);
-    }
-
-    if (!isAmSelected && hour !== 12) {
-      hour += 12;
-      return this.appendZero(hour) + ':' + this.appendZero(minute);
-    }
-
-    return this.appendZero(hour) + ':' + this.appendZero(minute);
-  };
-
-  format24to12 = (hour, minute) => {
-    if (hour === 0) {
-      hour += 12;
-      return this.appendZero(hour) + ':' + this.appendZero(minute) + 'AM';
-    }
-
-    if (hour === 12) {
-      hour += 12;
-      return this.appendZero(hour) + ':' + this.appendZero(minute) + 'PM';
-    }
-
-    if (hour > 0 && hour < 12) {
-      return this.appendZero(hour) + ':' + this.appendZero(minute) + 'AM';
-    }
-
-    hour -= 12;
-    return this.appendZero(hour) + ':' + this.appendZero(minute) + 'PM';
-  };
-
-  getFormat12(hour, minute, isAmSelected) {
-    return hour + ':' + minute + (isAmSelected ? 'AM' : 'PM');
-  }
-
+  
   // handlers
 
   handleKeyPress = (e) => {
@@ -169,9 +125,9 @@ export default class TimePicker extends Component {
 
     case 38 : { // up
       this.state.toShowHourContainer ?
-        this.setHour(null, null, ((this.state.degree + 30) % 360) || 360)
+        this.setHour(((this.state.degree + 30) % 360) || 360)
         :
-        this.setMinute(null, null, ((this.state.degree + 6) % 360) || 360);
+        this.setMinute(((this.state.degree + 6) % 360) || 360);
     }
       break;
 
@@ -187,8 +143,7 @@ export default class TimePicker extends Component {
 
   handleMove = (event) => {
     event.preventDefault();
-    let isMouseMoved = this.isMousePressed(event);
-    if (isMouseMoved) return;
+    if (isMousePressed(event)) return;
     this.changeClock(event.nativeEvent.clientX, event.nativeEvent.clientY);
   };
 
@@ -197,6 +152,7 @@ export default class TimePicker extends Component {
     event.preventDefault();
     this.changeClock(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
   };
+  
   handleTouchUp = (event) => {
     if (event.target === this.mask) return;
     this.changeClock(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
@@ -210,11 +166,11 @@ export default class TimePicker extends Component {
   changeClock = (clientX, clientY) => {
     const x = clientX - this.containerPos.x;
     const y = clientY - this.containerPos.y;
-    this.state.toShowHourContainer ? this.setHour(x, y) : this.setMinute(x, y);
+    this.state.toShowHourContainer ? this.setHour(this.getDegree(x, y)) : this.setMinute(this.getDegree(x, y));
   };
 
   toggleHourOrMinuteContainer(toShowHourContainer) {
-    let {degree, selectedIndexDegree} = toShowHourContainer ? this.getselectedIndexDegreeAndDegreeforHour(Number(this.state.hour)) : this.getselectedIndexDegreeAndDegreeforMinute(Number(this.state.minute));
+    let { degree, selectedIndexDegree } = toShowHourContainer ? this.getSelectedIndexDegreeAndDegreeForHour(Number(this.state.hour)) : this.getSelectedIndexDegreeAndDegreeForMinute(Number(this.state.minute));
     this.setState({
       toShowHourContainer,
       degree,
@@ -232,7 +188,7 @@ export default class TimePicker extends Component {
     e.preventDefault();
     let format24 = this.props.time;
     let {hour, minute, degree, selectedIndexDegree, isAmSelected} = this.getInitialConfig(format24);
-    // hour = this.appendZero(Math.round(degree / 30) || '12'); //not sure why i added this
+    // hour = appendZero(Math.round(degree / 30) || '12'); //not sure why i added this
     this.toggleToShow();
     this.setState({
       degree,
@@ -255,7 +211,7 @@ export default class TimePicker extends Component {
   }
 
   handleSet = () => {
-    let allFormat = this.getDate();
+    let allFormat = this.getTime(Number(this.state.hour), Number(this.state.minute), this.state.isAmSelected);
     this.setState({
       time : allFormat
     });
@@ -283,34 +239,51 @@ export default class TimePicker extends Component {
     };
   }
 
+  getHour(val) {
+    return appendZero((val % 12) || '12');
+  }
+
+  getMinute(val) {
+    return appendZero((val % 60) || '0');
+  }
+
   getInitialConfig(time) {
     let date = new Date();
     time = time ? time : date.getHours() + ':' + date.getMinutes();
     const temp = time.split(':');
-    const {degree, selectedIndexDegree} = this.getselectedIndexDegreeAndDegreeforHour(Number(temp[0]));
+    const hour24 = Number(temp[0]);
+    const minute24 = Number(temp[1]);
+    const {degree, selectedIndexDegree} = this.getSelectedIndexDegreeAndDegreeForHour(hour24);
 
     return {
-      hour         : this.appendZero(Number(temp[0])),
-      minute       : this.appendZero(Number(temp[1])),
+      hour         : this.getHour(hour24),
+      minute       : this.getMinute(minute24),
       degree,
       selectedIndexDegree,
       isAmSelected : Number(temp[0]) <= 12
     };
   }
 
-  getselectedIndexDegreeAndDegreeforHour(val) {
-    const degree = val * 30;
+  getSelectedIndexDegreeAndDegreeForHour(val) {
+    const degree = (val * 30) % 360;
     return {
       selectedIndexDegree : this.getSelectedIndexDegree(degree),
       degree
     };
   }
 
-  getselectedIndexDegreeAndDegreeforMinute(val) {
-    const degree = val * 6 || 360;
+  getSelectedIndexDegreeAndDegreeForMinute(val) {
+    /* const degree = val * 6 || 360; // why?
     const i = (degree / 6) % 5;
     return {
       selectedIndexDegree : i ? -1 : this.getSelectedIndexDegree(degree),
+      degree
+    };
+    */
+    const degree = (val * 6) % 360; // why?
+    // const i = (degree / 6) % 5;
+    return {
+      selectedIndexDegree : this.getSelectedIndexDegree(degree),
       degree
     };
   }
@@ -345,37 +318,45 @@ export default class TimePicker extends Component {
     });
   };
 
-  getDate() {
-    const format12 = this.getFormat12(this.state.hour, this.state.minute, this.state.isAmSelected);
-    const format24 = this.format12to24(Number(this.state.hour), Number(this.state.minute), this.state.isAmSelected);
+  getTime(hour, minute, isAmSelected) {
+    const format12 = getFormat12(hour, minute, isAmSelected);
+    const format24 = format12to24(hour, minute, isAmSelected);
     return {
       format12,
       format24
     };
   }
 
-  setMinute(offsetX, offsetY, degree = this.getDegree(offsetX, offsetY)) {
-    let toRound = degree % 6;
-    toRound < 3 ? degree -= toRound : degree += (6 - toRound);
-    const minute = this.appendZero((Math.round(degree / 6)) % 60) || '00';
+  setMinute(degree) {
+    /* let toRound = degree % 6;
+    toRound < 3 ? degree -= toRound : degree += (6 - toRound); */
+    const base = Math.round(degree / 6);
+    degree = base * 6;
+    const minute = this.getMinute(base);
     const selectedIndexDegree = this.getSelectedIndexDegree(degree);
-    this.setState({
+    const toReturn = {
       degree,
       minute,
       selectedIndexDegree
-    });
+    };
+    this.setState(toReturn);
+    return toReturn;
   }
 
-  setHour(offsetX, offsetY, degree = this.getDegree(offsetX, offsetY)) {
-    let toRound = degree % 30;
-    toRound < 15 ? degree -= toRound : degree += (30 - toRound);
-    const hour = this.appendZero(Math.round(degree / 30) || '12');
+  setHour(degree) {
+    /* let toRound = degree % 30;
+    toRound < 15 ? degree -= toRound : degree += (30 - toRound);*/
+    const base = Math.round(degree / 30);
+    degree = base * 30;
+    const hour = this.getHour(base);
     const selectedIndexDegree = this.getSelectedIndexDegree(degree);
-    this.setState({
+    const toReturn = {
       degree,
       hour,
       selectedIndexDegree
-    });
+    };
+    this.setState(toReturn);
+    return toReturn;
   }
 
   getBody() {
