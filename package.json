@@ -3,12 +3,18 @@
   "version": "0.0.2",
   "author": "Rahul Dhawani",
   "main": "build/index.js",
-  "description": "React Timepicker",
+  "description": "React Timepicker", // TODO give description
   "scripts": {
     "dev": "webpack-dev-server --config=./webpack.config.development.js",
     "test": "mocha --require ./src/test/utils.js --compilers js:babel-core/register --reporter spec ./src/test",
     "build": "rm -rf ./build && babel src/timepicker -d build/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rahuldhawani/react-gradient-timepicker.git"
+  },
+  "homepage": "https://github.com/rahuldhawani/react-gradient-timepicker",
+  "bugs": "https://github.com/rahuldhawani/react-gradient-timepicker/issues",
   "keywords": [
     "react",
     "time",
