@@ -1,5 +1,5 @@
 import gradients from './gradients.js';
-import {find as _find} from 'lodash';
+import _find from 'lodash.find';
 
 export function getColorStyles({themeSelector, theme, color1, headerColor = color1}) {
   let backgroundColor = `background-color: ${headerColor};`; // fallback to color1

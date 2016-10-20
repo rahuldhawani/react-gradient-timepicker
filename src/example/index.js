@@ -4,30 +4,64 @@ import ReactDOM from 'react-dom';
 import TimePicker from '../timepicker';
 class Example extends Component {
   static propTypes = {};
+  constructor(props) {
+   super(props);
+    this.state = {
+      val1: '12:00',
+      val2: {
+        format24: '12:00'
+      }
+    };
+  }
+
+  setS = (val) => {
+    this.setState({
+      val1:val.format24,
+
+    });
+
+  };
+
+  setS2 = (val) => {
+    this.setState({
+      val2:val,
+    }, () => {
+      if(this.state.val2) {
+        let time  = document.getElementById('time');
+        time.classList.remove('fade-in');
+        setInterval(() =>{
+          time.textContent = this.state.val2.format12;
+          time.classList.add('fade-in');
+        }, 5);
+
+      }
+    });
+
+
+
+  };
 
   render() {
     return (
       <div>
         <TimePicker
-          className="input-field"
-          theme="Ash"
+          className="example-hero"
+          time={this.state.val2.format24}
+          theme="Pinky"
+          keyName="pinky"
           placeholder="Start Time"
-          onSet={ (val) => {
-            alert('val:' + val.format24);
-          } }
+          onSet={this.setS2}
         />
-
         <TimePicker
-          time="01:00"
-          className="input-field"
+          className="example-hero"
+          time={this.state.val2.format24}
+          keyName="instagram"
           theme="Instagram"
-
           placeholder="Start Time"
-          onSet={ (val) => {
-            alert('val:' + val.format12);
-          } }
+          onSet={this.setS2}
         />
-      </div>
+
+</div>
     );
   }
 }
