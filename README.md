@@ -34,6 +34,16 @@ var TimePicker = require('react-gradient-timepicker');
 | className   | string   | Class name for timepicker input                                                                                                                                                                                    | Yes                                                                                                 |
 | onSet       | function | The funciton to call when Set button is clicked                                                                                                                                                                    | No                                                                                                  |
 
+
+##### onSet PropType
+onSet function is called everytime **SET** button is clicked with parameter
+```
+{
+    format12: '01:00 AM' // 12 hour format,
+    format24: '13:00' // 24 hour format
+}
+```
+
 ### Screenshots
 ![Ash theme](http://i.imgur.com/wGHZYQF.png)
 ![Bourbon theme ](http://i.imgur.com/aXhofjL.png)
