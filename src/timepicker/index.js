@@ -133,9 +133,9 @@ export default class TimePicker extends Component {
 
     case 40 : { // down
       this.state.toShowHourContainer ?
-        this.setHour(null, null, ((this.state.degree - 30) % 360) || 360)
+        this.setHour(((this.state.degree - 30) % 360) || 360)
         :
-        this.setMinute(null, null, ((this.state.degree - 6) % 360) || 360);
+        this.setMinute(((this.state.degree - 6) % 360) || 360);
     }
       break;
     }
