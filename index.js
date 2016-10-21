@@ -9,7 +9,7 @@ class Example extends Component {
     this.state = {
       val1: '12:00',
       val2: {
-        format24: '12:00'
+        format24: ''
       }
     };
   }
@@ -47,9 +47,9 @@ class Example extends Component {
         <TimePicker
           className="example-hero"
           time={this.state.val2.format24}
-          theme="Pinky"
-          keyName="pinky"
-          placeholder="Start Time"
+          theme="Bourbon"
+          keyName="Bourbon"
+          placeholder="Try it"
           onSet={this.setS2}
         />
       </div>
