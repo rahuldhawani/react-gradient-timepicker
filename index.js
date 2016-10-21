@@ -52,16 +52,7 @@ class Example extends Component {
           placeholder="Start Time"
           onSet={this.setS2}
         />
-        <TimePicker
-          className="example-hero"
-          time={this.state.val2.format24}
-          keyName="instagram"
-          theme="Instagram"
-          placeholder="Start Time"
-          onSet={this.setS2}
-        />
-
-</div>
+      </div>
     );
   }
 }
