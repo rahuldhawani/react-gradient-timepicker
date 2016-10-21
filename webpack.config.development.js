@@ -2,7 +2,7 @@ module.exports = {
   devtool: 'inline-source-map',
   debug: true,
   entry: [
-    './src/example/',
+    './src/example/index.js',
     'webpack-dev-server/client?http://localhost:8787'
   ],
   output: {
