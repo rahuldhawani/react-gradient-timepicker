@@ -1,42 +1,59 @@
 @font-face {
   font-family: 'qanelas';
-  src: url('fonts/QanelasSoftDEMO-ExtraBold.eot');
-  src: local('☺'), url('fonts/QanelasSoftDEMO-ExtraBold.woff') format('woff'), url('fonts/QanelasSoftDEMO-ExtraBold.ttf') format('truetype'), url('fonts/QanelasSoftDEMO-ExtraBold.svg') format('svg');
+  src: url('assets/fonts/QanelasSoftDEMO-ExtraBold.eot');
+  src: local('☺'), url('assets/fonts/QanelasSoftDEMO-ExtraBold.woff') format('woff'), url('assets/fonts/QanelasSoftDEMO-ExtraBold.ttf') format('truetype'), url('assets/fonts/QanelasSoftDEMO-ExtraBold.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'qanelas',Sans-Serif;
+  font-family: 'qanelas', Sans-Serif;
   margin: 0;
 }
 
 body * {
   box-sizing: border-box;
 }
-
 .hero {
   background: linear-gradient(-269deg, #DD5E89 0%, #F7BB97 100%);
   margin: 0;
   height: 100vh;
-  overflow: hidden;
-  padding: 40px 50px;
+  overflow-x: hidden;
+  font-size: 12px;
+  width: 100vw;
+  position: relative;
+  padding: 2.5em 3.5em;
 }
-.title {
-  color: white;
+
+.hero__title {
   margin: 0;
-  /* A beautiful : */
-  font-size: 64px;
+  font-size: 4.5em;
   color: #FFFFFF;
   letter-spacing: 4.5px;
-  line-height: 80px;
+  line-height: 1.5;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   margin-bottom: 40px;
 }
 
-.title .highlight {
+.hero__github {
+  position: absolute;
+  top: 2.5em;
+  right: 3.5em;
+  width: 50px;
+}
+
+.hero__footer-note {
+  position: absolute;
+  bottom: 2.5em;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.hero__highlight {
   border-bottom: 2px dashed;
 }
+
 .example-hero {
   background: white;
   border: 0;
@@ -45,12 +62,14 @@ body * {
   border-radius: 31px;
   font-size: 16px;
 }
-#time {
+
+.hero__time {
   position: absolute;
   bottom: 16px;
   right: -50px;
   font-size: 18px;
   transform: scale(12);
+  -webkit-transform: scale(12);
   -webkit-transform-origin: 20% 40%;
   transform-origin: bottom right;
   color: rgba(255, 255, 255, .34);
@@ -59,30 +78,90 @@ body * {
 .example-hero::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #DD5E89;
 }
+
 .example-hero:-moz-placeholder { /* Firefox 19+ */
   color: #DD5E89;
 }
+
 .example-hero:-ms-input-placeholder { /* IE 10+ */
   color: #DD5E89;
 }
+
 .example-hero:-moz-placeholder { /* Firefox 18- */
   color: #DD5E89;
 }
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 .fade-in {
-  opacity:0;  /* make things invisible upon start */
-  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
 
-  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-  -webkit-animation-duration:1s;
-  -moz-animation-duration:1s;
-  animation-duration:1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+  .hero {
+    font-size: 11px;
+  }
+  .hero__time {
+    transform: scale(9);
+    -webkit-transform: scale(9);
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  .hero {
+    font-size: 11px;
+  }
+  .hero__time {
+    transform: scale(5);
+    -webkit-transform: scale(5);
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width: 320px) {
+  .hero {
+    font-size: 10px;
+  }
+  .hero__time {
+    transform: scale(5);
+    -webkit-transform: scale(5);
+  }
 }
