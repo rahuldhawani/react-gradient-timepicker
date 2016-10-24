@@ -10,7 +10,8 @@
     "build": "rm -rf ./build && babel src/timepicker -d build/",
     "dist": "webpack --config webpack.config.production.js -p",
     "storybook-dev": "start-storybook -p 9001 -c storybook",
-    "storybook-dist": "build-storybook -c storybook -o ./storybook/dist/"
+    "storybook-dist": "build-storybook -c storybook -o ./storybook/dist/",
+    "gh-pages": "npm run storybook-dist && npm run dist"
   },
   "repository": {
     "type": "git",
