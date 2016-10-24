@@ -1,9 +1,11 @@
 import gradients from './gradients.js';
 import _find from 'lodash.find';
 
+const DEFAULT_PRIMARY_COLOR = '#F26B83';
+
 export function getColorStyles({themeSelector, theme, color1, headerColor = color1}) {
-  let backgroundColor = `background-color: ${headerColor};`; // fallback to color1
-  let primaryColor = color1;
+  let backgroundColor = '';
+  let primaryColor = '';
   if (theme) {
     let selectedGradient = _find(gradients, function getTheme(o) {
       return o.name === theme;
@@ -11,15 +13,18 @@ export function getColorStyles({themeSelector, theme, color1, headerColor = colo
 
     if (selectedGradient) {
       const colors = selectedGradient.colors;
-      primaryColor = primaryColor ? primaryColor : colors[0];
+      primaryColor = color1 ? color1 : colors[0];
       backgroundColor = `
-    background: ${colors[0]};
-    background: -webkit-linear-gradient(to left,${colors[0]}  , ${colors[1]});
-    background: linear-gradient(to left, ${colors[0]} ,${colors[1]});`;
+      background: ${colors[0]};
+      background: -webkit-linear-gradient(to left,${colors[0]}  , ${colors[1]});
+      background: linear-gradient(to left, ${colors[0]} ,${colors[1]});`;
     } else {
-      backgroundColor = 'background-color: #F26B83;';
-      primaryColor = '#F26B83';
+      backgroundColor = `background-color: ${DEFAULT_PRIMARY_COLOR};`;
+      primaryColor = DEFAULT_PRIMARY_COLOR;
     }
+  } else {
+    primaryColor = color1 || DEFAULT_PRIMARY_COLOR;
+    backgroundColor = `background-color: ${headerColor || primaryColor};`;
   }
 
   return  `
