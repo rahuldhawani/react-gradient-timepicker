@@ -1,7 +1,8 @@
-# react-gradient-timepicker
+# react-gradient-timepicker [![Build Status](https://travis-ci.org/rahuldhawani/react-gradient-timepicker.svg?branch=master)](https://travis-ci.org/rahuldhawani/react-gradient-timepicker)
 A beautiful gradients timepicker component built in and for awesome React.
+
 ### Demo
-https://github.com/rahuldhawani/react-timepicker
+https://rahuldhawani.github.io/react-gradient-timepicker/
 
 ### Installation
 ```
@@ -27,7 +28,7 @@ var TimePicker = require('react-gradient-timepicker');
 | prop        | type     | description                                                                                                                                                                                                        | optional                                                                                            |
 |-------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | #time       | string   | 24 hours format time to initial time                                                                                                                                                                               | Yes. Takes current time if not provided                                                             |
-| theme       | string   | Gradient name from uigradients.com. header, buttons, hand colors will take theme color. If you want to change buttons and hand color, provide color1 prop. Note: Header color cant be changed if theme is provided | Yes. If not provided it takes color1. if color1 is not provided it takes default color ie #F26B83.  |
+| theme       | string   | Gradient name from www.uigradients.com. header, buttons, hand colors will take theme color. If you want to change buttons and hand color, provide color1 prop. Note: Header color cant be changed if theme is provided | Yes. If not provided it takes color1. if color1 is not provided it takes default color ie #F26B83.  |
 | color1      | string   | color1 is primary color ie. header, buttons, hand will take this color. If you want to header color, provide headerColor prop                                                                                      |  Yes. Takes default color for header, buttons, hand ie. #F26B83                                     |
 | headerColor | string   | Header color for timepicker. Does not work if theme prop is provided.                                                                                                                                              | Yes. If not provided it takes color1. if color1 is not provided it takes default color ie #F26B83.  |
 | placeholder | string   | Placeholder string for timepicker input                                                                                                                                                                            | No                                                                                                  |
@@ -43,6 +44,8 @@ onSet function is called everytime **SET** button is clicked with parameter
     format24: '13:00' // 24 hour format
 }
 ```
+##### theme PropType
+react-gradient-timepicker uses gradients color www.uigradients.com . theme proptype takes name of the gradient scheme from www.uigradients.com.
 
 ### Screenshots
 ![Ash theme](http://i.imgur.com/wGHZYQF.png)
