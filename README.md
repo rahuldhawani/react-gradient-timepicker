@@ -1,7 +1,7 @@
 # react-gradient-timepicker
 A beautiful gradients timepicker component built in and for awesome React.
 ### Demo
-https://rahuldhawani.github.io/react-gradient-timepicker/
+https://github.com/rahuldhawani/react-timepicker
 
 ### Installation
 ```
@@ -43,9 +43,6 @@ onSet function is called everytime **SET** button is clicked with parameter
     format24: '13:00' // 24 hour format
 }
 ```
-
-##### theme PropType
-`react-gradient-timepicker` uses gradients color www.uigradients.com . `theme` proptype takes name of the gradient scheme from www.uigradients.com.
 
 ### Screenshots
 ![Ash theme](http://i.imgur.com/wGHZYQF.png)
