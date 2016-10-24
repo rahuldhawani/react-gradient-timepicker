@@ -4,53 +4,39 @@ import ReactDOM from 'react-dom';
 import TimePicker from './src/timepicker';
 class Example extends Component {
   static propTypes = {};
+
   constructor(props) {
-   super(props);
+    super(props);
     this.state = {
-      val1: '12:00',
-      val2: {
-        format24: ''
-      }
+      val : '12:00'
     };
   }
 
-  setS = (val) => {
+  handleSet = (val) => {
     this.setState({
-      val1:val.format24,
-
-    });
-
-  };
-
-  setS2 = (val) => {
-    this.setState({
-      val2:val,
+      val
     }, () => {
-      if(this.state.val2) {
-        let time  = document.getElementById('time');
+      if (this.state.val) {
+        let time = document.getElementById('time');
         time.classList.remove('fade-in');
-        setInterval(() =>{
-          time.textContent = this.state.val2.format12;
+        setInterval(() => {
+          time.textContent = this.state.val.format12;
           time.classList.add('fade-in');
         }, 5);
-
       }
     });
-
-
-
   };
 
   render() {
     return (
       <div>
         <TimePicker
-          className="example-hero"
-          time={this.state.val2.format24}
+          className="hero__action hero__action--example"
+          time={this.state.val.format24}
           theme="Bourbon"
           keyName="Bourbon"
           placeholder="Try it"
-          onSet={this.setS2}
+          onSet={this.handleSet}
         />
       </div>
     );

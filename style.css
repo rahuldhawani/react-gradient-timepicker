@@ -1,19 +1,38 @@
 @font-face {
-  font-family: 'qanelas';
-  src: url('assets/fonts/QanelasSoftDEMO-ExtraBold.eot');
-  src: local('☺'), url('assets/fonts/QanelasSoftDEMO-ExtraBold.woff') format('woff'), url('assets/fonts/QanelasSoftDEMO-ExtraBold.ttf') format('truetype'), url('assets/fonts/QanelasSoftDEMO-ExtraBold.svg') format('svg');
-  font-weight: normal;
+  font-family: 'Qanelas';
+  src: url('./assets/fonts/QanelasSoftDEMO-UltraLight.eot');
+  src: url('./assets/fonts/QanelasSoftDEMO-UltraLight.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/QanelasSoftDEMO-UltraLight.woff') format('woff'),
+  url('./assets/fonts/QanelasSoftDEMO-UltraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Qanelas';
+  src: url('./assets/fonts/QanelasSoftDEMO-ExtraBold.eot');
+  src: url('./assets/fonts/QanelasSoftDEMO-ExtraBold.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/QanelasSoftDEMO-ExtraBold.woff') format('woff'),
+  url('./assets/fonts/QanelasSoftDEMO-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
   font-style: normal;
 }
 
 body {
-  font-family: 'qanelas', Sans-Serif;
+  font-family: 'Qanelas', Sans-Serif;
   margin: 0;
+  font-weight: 200;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 body * {
   box-sizing: border-box;
 }
+
 .hero {
   background: linear-gradient(-269deg, #DD5E89 0%, #F7BB97 100%);
   margin: 0;
@@ -33,6 +52,7 @@ body * {
   line-height: 1.5;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   margin-bottom: 40px;
+  font-weight: 800;
 }
 
 .hero__github {
@@ -54,13 +74,30 @@ body * {
   border-bottom: 2px dashed;
 }
 
-.example-hero {
+.hero__action-container {
+  display: flex;
+  align-items: center;
+}
+
+.hero__action {
   background: white;
   border: 0;
   padding: 12px;
   text-align: center;
   border-radius: 31px;
   font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.hero__action--demos {
+  color: #f1a394;
+  padding: 12px 50px;
+  margin-left: 20px;
+}
+
+.hero__action--example {
+  color: #DD5E89;
 }
 
 .hero__time {
@@ -68,6 +105,7 @@ body * {
   bottom: 16px;
   right: -50px;
   font-size: 18px;
+  font-weight: 800;
   transform: scale(12);
   -webkit-transform: scale(12);
   -webkit-transform-origin: 20% 40%;
@@ -75,19 +113,23 @@ body * {
   color: rgba(255, 255, 255, .34);
 }
 
-.example-hero::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.hero__action--example::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: 'Qanelas', Sans-Serif;
   color: #DD5E89;
 }
 
-.example-hero:-moz-placeholder { /* Firefox 19+ */
+.hero__action--example:-moz-placeholder { /* Firefox 19+ */
+  font-family: 'Qanelas', Sans-Serif;
   color: #DD5E89;
 }
 
-.example-hero:-ms-input-placeholder { /* IE 10+ */
+.hero__action--example:-ms-input-placeholder { /* IE 10+ */
+  font-family: 'Qanelas', Sans-Serif;
   color: #DD5E89;
 }
 
-.example-hero:-moz-placeholder { /* Firefox 18- */
+.hero__action--example:-moz-placeholder { /* Firefox 18- */
+  font-family: 'Qanelas', Sans-Serif;
   color: #DD5E89;
 }
 

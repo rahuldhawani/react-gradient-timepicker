@@ -8,7 +8,9 @@
     "dev": "node webpacker-server.js",
     "test": "mocha --require ./src/test/utils.js --compilers js:babel-core/register --reporter spec ./src/test",
     "build": "rm -rf ./build && babel src/timepicker -d build/",
-    "dist": "webpack --config webpack.config.production.js -p"
+    "dist": "webpack --config webpack.config.production.js -p",
+    "storybook-dev": "start-storybook -p 9001 -c storybook",
+    "storybook-dist": "build-storybook -c storybook -o ./storybook/dist/"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "react-dom": "^15.3.2"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.25.1",
     "babel-core": "^6.2.1",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.0",
