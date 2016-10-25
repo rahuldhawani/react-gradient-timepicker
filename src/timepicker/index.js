@@ -59,7 +59,7 @@ export default class TimePicker extends Component {
 
   addStyles() {
     const commonSelector = 'react-timepicker-common-style';
-    const themeSelector = this.getThemeSelector();
+    const themeSelector = this.getThemeSelector(this.props.theme, this.props.color1);
     const {theme, color1, headerColor} = this.props;
     let head = document.head || document.getElementsByTagName('head')[0];
 
@@ -239,11 +239,7 @@ export default class TimePicker extends Component {
     };
   }
 
-  getThemeSelector() {
-    const {
-      theme,
-      color1
-      } = this.props;
+  getThemeSelector(theme, color1) {
     let _color1 = color1;
     if (color1 && color1.indexOf('#') === 0) {
       _color1 = color1.substr(1);
@@ -386,7 +382,7 @@ export default class TimePicker extends Component {
 
   getBody() {
     if (!this.state.toShow) return false;
-    const themeSelector = this.getThemeSelector();
+    const themeSelector = this.getThemeSelector(this.props.theme, this.props.color1);
     const primaryColorColorClassName = `react-timepicker-primary-color-color-${themeSelector}`;
     const primaryColorBackgroundClassName = `react-timepicker-primary-color-background-${themeSelector}`;
     const backgroundColorClassName = `react-timepicker-background-color-${themeSelector}`;

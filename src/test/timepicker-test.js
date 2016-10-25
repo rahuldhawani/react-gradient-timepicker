@@ -73,7 +73,6 @@ describe('Timepicker', function() {
             time="01:00"
             className="input-field"
             theme="Instagram"
-            keyName="instagram"
             placeholder="Start Time"
             onSet={this.handleSetSpy}
           />
@@ -81,7 +80,6 @@ describe('Timepicker', function() {
             time="01:00"
             className="input-field"
             theme="Pinky"
-            keyName="pinky"
             placeholder="Start Time"
             onSet={this.handleSetSpy}
           />
@@ -100,12 +98,13 @@ describe('Timepicker', function() {
     });
 
     it('adds particular theme styles only once', function() {
-      expect(document.querySelectorAll('#pinky').length).to.equal(1);
-      expect(document.querySelectorAll('#instagram').length).to.equal(1);
+      console.log(this.timepicker1);
+      expect(document.querySelectorAll('#' + this.timepicker.instance().getThemeSelector('Pinky')).length).to.equal(1);
+      expect(document.querySelectorAll('#' + this.timepicker.instance().getThemeSelector('Instagram')).length).to.equal(1);
     });
 
     it('adds style with id \'react-theme-style\' if no theme name is given', function() {
-      expect(document.querySelectorAll('#react-theme-style').length).to.equal(1);
+      expect(document.querySelectorAll('#react-time-picker-theme').length).to.equal(1);
     });
   });
 
