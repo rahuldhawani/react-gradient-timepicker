@@ -5,15 +5,15 @@ A beautiful gradients timepicker component built in and for awesome React.
 https://rahuldhawani.github.io/react-gradient-timepicker/
 
 ### Installation
-```
+```bash
 npm install react-gradient-timepicker --save
 ```
 ### How to use?
-```
+```jsx
 import TimePicker from 'react-gradient-timepicker'; // or
 var TimePicker = require('react-gradient-timepicker');
 ```
-```
+```jsx
 <TimePicker
   time="01:00"
   theme="Bourbon"
@@ -38,10 +38,10 @@ var TimePicker = require('react-gradient-timepicker');
 
 ##### onSet PropType
 onSet function is called everytime **SET** button is clicked with parameter
-```
+```js
 {
-    format12: '01:00 AM' // 12 hour format,
-    format24: '13:00' // 24 hour format
+    format12: "01:00 AM" // 12 hour format,
+    format24: "13:00" // 24 hour format
 }
 ```
 ##### theme PropType
